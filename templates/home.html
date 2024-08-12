@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="./Assets/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <link rel="stylesheet" href="/static/css/styleee2.css"> 
+    <title>تَآزُر</title>       
+</head>
+
+<body>
+    <nav id="navbar">
+        <a href="/" class="logo">
+            <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+        </a>
+        <ul class="right">
+            <li><a id="nav_dashboard" href="/dashboard">Dashboard</a></li> 
+            <li><a id="nav_test" href="/predict"></a></li>
+            <li><a id="nav_conditions" href="/conditions"></a></li>
+            <li><a id="nav_login" href="/login"></a></li>
+             <!-- Language Switcher Dropdown -->
+             <div class="language-switcher icon-container">
+                <button><i class="fas fa-globe"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setLanguage('en')">English</a>
+                    <a href="#" onclick="setLanguage('ar')">العربية</a>
+                </div>
+            </div>
+        </ul>
+    </nav>
+
+    <div class="header">
+        <div class="header-content">
+            <h1 id="support_connect_empower"></h1>
+            <h3 id="join_community"></h3>            
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="row">
+            <div class="text-col">
+                <h2 id="connect_with_parents"></h2>
+                <p id="feature1_desc"></p>
+            </div>
+            <div class="img-col">
+                <img src="/static/images/feature-1.png" alt="feature-1" style="max-width: 400px; height: auto;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="img-col">
+                <img src="/static/images/feature-2.png" alt="feature-2" style="max-width: 400px; height: auto;">
+            </div>
+            <div class="text-col">
+                <h2 id="access_tailored_resources"></h2>
+                <p id="feature2_desc"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-col">
+                <h2 id="expert_guidance_anytime"></h2>
+                <p id="feature3_desc"></p>
+            </div>
+            <div class="img-col">
+                <img src="/static/images/feature-3.png" alt="feature-3" style="max-width: 400px; height: auto;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="img-col">
+                <img src="/static/images/feature-4.png" alt="feature-4" style="max-width: 400px; height: auto;">
+            </div>
+            <div class="text-col">
+                <h2 id="personalized_learning_plans"></h2>
+                <p id="feature4_desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h2 id="faq_title"></h2>
+        <ul class="accordion">
+            <li>
+                <input type="radio" name="accordion" id="first">
+                <label for="first" id="faq_what_is_parentpals"></label>
+                <div class="content">
+                    <p id="faq_answer_what_is_parentpals"></p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="second">
+                <label for="second" id="faq_is_free"></label>
+                <div class="content">
+                    <p id="faq_answer_is_free"></p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="third">
+                <label for="third" id="faq_how_help_family"></label>
+                <div class="content">
+                    <p id="faq_answer_how_help_family"></p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="fourth">
+                <label for="fourth" id="faq_get_started"></label>
+                <div class="content">
+                    <p id="faq_answer_get_started"></p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="fifth">
+                <label for="fifth" id="faq_suitable_for_children"></label>
+                <div class="content">
+                    <p id="faq_answer_suitable_for_children"></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <h2 id="questions_call"></h2>
+        <div class="row">
+            <div class="col">
+                <a id="footer_faq" href="#"></a>
+                <a id="footer_support" href="#"></a>
+                <a id="footer_privacy" href="#"></a>
+                <a id="footer_terms" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_help_centre" href="#"></a>
+                <a id="footer_careers" href="#"></a>
+                <a id="footer_cookie_preferences" href="#"></a>
+                <a id="footer_legal_notices" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_account" href="#"></a>
+                <a id="footer_how_it_works" href="#"></a>
+                <a id="footer_corporate_information" href="#"></a>
+                <a id="footer_partners" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_media_centre" href="#"></a>
+                <a id="footer_about_us" href="#"></a>
+                <a id="footer_contact_us" href="#"></a>
+            </div>
+        </div>
+        <p class="copyright-text" id="footer_copyright"></p>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function setLanguage(lang) {
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            document.getElementById(key).innerText = data[key];
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+        // Load default language on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'en';
+            setLanguage(defaultLang);
+        });
+    </script>
+</body>
+
+</html>

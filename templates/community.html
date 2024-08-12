@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <link rel="shortcut icon" href="./Assets/favicon.png" type="image/x-icon">
+    <title>Parentpals - Community</title>
+    <link rel="stylesheet" href="/static/css/styleee2.css">
+    <style>
+        label::after {
+            content: '';
+            font-size: 34px;
+            position: absolute;
+            right: 20px;
+            transition: transform 0.5s;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <a href="/index" class="logo">
+                <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+            </a>
+            <ul>
+                {% if current_user.is_authenticated %}
+                <li><a id="nav_match" href="/match"></a></li>
+                <li><a id="nav_mentors" href="/mentor"></a></li>
+                <li><a id="nav_community" href="/community"></a></li>
+                
+                <!-- Profile Icon Dropdown -->
+                <div class="profile-switcher icon-container">
+                    <button><i class="fas fa-user"></i></button>
+                    <div class="dropdown-content">
+                        <a id="nav_update_profile" href="/profile"></a>
+                        <a id="nav_logout" href="/logout"></a>
+                    </div>
+                </div>
+                
+                <!-- Chat Icon -->
+                <li class="icon-container chat-icon">
+                    <a href="/chat">
+                        <i class="fas fa-comment"></i> <!-- Font Awesome Chat Icon -->
+                    </a>
+                </li>
+                {% else %}
+                <li><a id="nav_login" href="/login"></a></li>
+                {% endif %}
+                
+                <!-- Language Switcher Dropdown -->
+                <div class="language-switcher icon-container">
+                    <button><i class="fas fa-globe"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="setLanguage('en')">English</a>
+                        <a href="#" onclick="setLanguage('ar')">العربية</a>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="header"><br><br><br><br><br><br>
+            <section id="community">
+                <h1 id="community_forum_title"></h1>
+                <div id="forum-posts">
+                    <article class="post">
+                        <p id="share_experiences"></p>
+                    </article>
+                    <!-- More posts can be added here -->
+                </div>
+                <form id="post-form">
+                    <label for="post-title" id="post_title_label"></label>
+                    <input type="text" id="post-title" required>
+                    <label for="post-content" id="post_content_label"></label>
+                    <textarea id="post-content" rows="5" required></textarea>
+                    <button type="submit" id="post_button"></button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <div class="footer">
+        <h2 id="questions_call"></h2>
+
+        <div class="row">
+            <div class="col">
+                <a id="footer_faq" href="#"></a>
+                <a id="footer_support" href="#"></a>
+                <a id="footer_privacy" href="#"></a>
+                <a id="footer_terms" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_account" href="#"></a>
+                <a id="footer_how_it_works" href="#"></a>
+                <a id="footer_corporate_information" href="#"></a>
+                <a id="footer_partners" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_media_centre" href="#"></a>
+                <a id="footer_about_us" href="#"></a>
+                <a id="footer_contact_us" href="#"></a>
+            </div>
+        </div>
+
+        <p class="copyright-text" id="footer_copyright"></p>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function setLanguage(lang) {
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            const element = document.getElementById(key);
+                            if (element) {
+                                element.innerText = data[key];
+                            }
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'en';
+            setLanguage(defaultLang);
+        });
+    </script>
+</body>
+
+</html>
